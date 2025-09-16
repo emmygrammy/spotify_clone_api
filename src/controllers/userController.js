@@ -1,6 +1,7 @@
 import express from 'express';
 import  User from '../models/user.js';
 import bcrypt from 'bcrypt';
+import generateToken from '../utils/generateToken.js';
 
 
 //? @route POST /api/users/register
@@ -61,7 +62,7 @@ export const loginUser = async (req, res) => {
                 email: user.email,
                 isAdmin: user.isAdmin,
                 profilePicture: user.profilePicture,
-                token: 'token here',
+                token: generateToken(user._id),
             }
         });
     } catch (error) {
